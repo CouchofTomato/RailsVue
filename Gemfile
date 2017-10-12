@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.4.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -38,6 +39,8 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'ckeditor', '~> 4.2', '>= 4.2.4'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'devise', '~> 4.3'
+gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+gem 'mini_magick', '~> 4.8'
 
 group :production do
   gem 'pg'
