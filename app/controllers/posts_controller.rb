@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # Index action to render all posts
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   # New action for creating post
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   def update
     if @post.update_attributes(post_params)
       flash[:notice] = "Successfully updated post!"
-      redirect_to post_path(@posts)
+      redirect_to post_path(@post)
     else
       flash[:alert] = "Error updating post!"
       render :edit
