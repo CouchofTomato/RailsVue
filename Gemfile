@@ -41,6 +41,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'devise', '~> 4.3'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 gem 'mini_magick', '~> 4.8'
+gem 'link_thumbnailer', '~> 3.3', '>= 3.3.1'
 
 group :production do
   gem 'pg'
