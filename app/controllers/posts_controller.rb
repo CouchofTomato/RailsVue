@@ -49,8 +49,6 @@ class PostsController < ApplicationController
         redirect_to(:action => 'index')
       return
     end
-      flash[:notice] = "OK"
-      redirect_to(:action => 'index')
   end
 
   # The destroy action removes the post permanently from the database
