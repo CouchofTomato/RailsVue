@@ -3,4 +3,6 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: {maximum: 140}
   #This validates presence of body
   validates :body, presence: true
+  #This validates format of URL
+  #validates :url, :format => URI::regexp(%w(http https))
 end

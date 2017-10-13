@@ -16,7 +16,6 @@ class PostsController < ApplicationController
   # Create action saves the post into database
   def create
     @post = Post.new(post_params)
-    @image = LinkThumbnailer.generate(@post.url)
     if @post.save
       flash[:notice] = "Successfully created post!"
       redirect_to post_path(@post)
@@ -43,6 +42,7 @@ class PostsController < ApplicationController
 
   # The show action renders the individual post after retrieving the the id
   def show
+    @image = LinkThumbnailer.generate(@post.url)
   end
 
   # The destroy action removes the post permanently from the database
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :URL)
   end
 
   def find_post
