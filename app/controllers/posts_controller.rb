@@ -42,7 +42,15 @@ class PostsController < ApplicationController
 
   # The show action renders the individual post after retrieving the the id
   def show
-    @image = LinkThumbnailer.generate(@post.URL)
+    begin
+      @image = LinkThumbnailer.generate(@post.URL)
+      rescue LinkThumbnailer::Exceptions => e
+        flash[:notice] = "Error: Not a valid link."
+        redirect_to(:action => 'index')
+      return
+    end
+      flash[:notice] = "OK"
+      redirect_to(:action => 'index')
   end
 
   # The destroy action removes the post permanently from the database
