@@ -5,4 +5,5 @@ class Post < ApplicationRecord
   validates :body, presence: true
   #This validates format of URL
   #validates :url, :format => URI::regexp(%w(http https))
+  has_many :comments, as: :commentable
 end
