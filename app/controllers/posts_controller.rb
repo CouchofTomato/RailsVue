@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   # The show action renders the individual post after retrieving the the id
   def show
-    @image = LinkThumbnailer.generate(@post.url)
+    @image = LinkThumbnailer.generate(@post.URL)
   end
 
   # The destroy action removes the post permanently from the database
