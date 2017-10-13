@@ -42,6 +42,7 @@ class PostsController < ApplicationController
 
   # The show action renders the individual post after retrieving the the id
   def show
+    # Rescue code for LinkThumbnailer to give error when encountering bad URI
     begin
       @image = LinkThumbnailer.generate(@post.URL)
       rescue LinkThumbnailer::Exceptions => e

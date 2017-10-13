@@ -9,9 +9,9 @@ class CommentsController < ApplicationController
       @comment = @commentable.comments.new(comment_params)
 
       if @comment.save
-        redirect_to :back, notice: 'Your comment was successfully posted!'
+        redirect_back(fallback_location: root_path, notice: 'Your comment was successfully posted!') 
       else
-        redirect_to :back, notice: "Your comment wasn't posted!"
+        redirect_back(fallback_location: root_path, notice: "Your comment wasn't posted!") 
       end
     end
 
