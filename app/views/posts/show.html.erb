@@ -1,5 +1,6 @@
 <div class="col-sm-11 col-xs-12 blog-content">
   <h2 class="text-center"><%= @post.title %></h2>
+  <h6 class="text-center"><%= @post.user.email %></h6>
   <h5 class="text-center"><%= @post.created_at.strftime('%b %d, %Y') %></h5>
   <div><%= raw @post.body %></div>
 
@@ -8,6 +9,12 @@
   <div><%#= @image %></div>
 
   <div><%= image_tag("#{@image.images.first.src.to_s}", :class => "style_image") if @image.present? %></div>
+	<div class="text-center">
+  <% if current_user.id == @post.user_id %>
+	  <%= link_to "Edit", edit_post_path(@post), class: "btn btn-default" %>
+	  <%= link_to "Delete", post_path(@post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
+	<% end %>
+	</div>
 
 	  <h3>Comments</h3>
 
