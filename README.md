@@ -4,5 +4,9 @@ Installing Simple Form and Bootstrap-Sass
 Setting up the Posts Controller and Views
 Installing CKeditor
 Image uploading for posts
-Adding Image-Magic and Carrierwave
+Adding Carrierwave and Mini_Magick
 Image uploading for Admins
+User authentication with Devise
+User privileges
+Polymorphic comments
+Nested Comments
