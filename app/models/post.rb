@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
 	has_many :comments, as: :commentable
+	belongs_to :user
+
 
 	#This validates presence of title, and makes sure that the length is not more than 140 words
   validates :title, presence: true, length: {maximum: 140}
