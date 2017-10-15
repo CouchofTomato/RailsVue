@@ -14,7 +14,7 @@
   <div><%#= @post.URL %></div>
   <div><%#= @image %></div>
 
-  <div><%= image_tag("#{@image.images.first.src.to_s}", :class => "style_image") if @image.present? %></div>
+  <div class="text-center"><%= image_tag("#{@image.images.first.src.to_s}", :class => "style_image") if @image.present? %></div>
 
 
 	  <h3>Comments</h3>
