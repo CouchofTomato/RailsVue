@@ -1,11 +1,14 @@
 body {
 	background-color: #F0EFED !important;
+	font-family: 'Rajdhani', sans-serif !important; 
+	font-size: 1.8em !important;
 }
 .navbar-brand {
 	font-family: 'Cedarville Cursive', cursive;
 }
 a h1 {
 	color: #F8F8F8;
+	font-size: 3em;
 }
 .blog-content h2 {
 	font-size: 2em;
@@ -14,5 +17,7 @@ a h1 {
 	background-color: #969D95;
 	a {
 		color: #E3E5E2;
+		font-size: 1.4em;
+		font-style: bold;
 	}
 }
