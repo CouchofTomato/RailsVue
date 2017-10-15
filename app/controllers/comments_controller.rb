@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 	before_action :find_commentable
+  before_action :set_comment, only: [:destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
     def new
@@ -17,6 +18,16 @@ class CommentsController < ApplicationController
       end
     end
 
+    # The destroy action removes the comments permanently from the database
+    def destroy
+      if @comment.destroy
+        flash[:notice] = "Successfully deleted comment!"
+        redirect_to root_path
+      else
+        flash[:alert] = "Error updating comment!"
+      end
+    end
+
     private
 
     def comment_params
@@ -26,6 +37,10 @@ class CommentsController < ApplicationController
     def find_commentable
       @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
       @commentable = Post.find_by_id(params[:post_id]) if params[:post_id]
+    end
+
+    def set_comment
+      @comment = Comment.find(params[:id])
     end
 
   #   def find_commentable
