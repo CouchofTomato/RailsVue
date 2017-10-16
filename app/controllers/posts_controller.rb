@@ -53,6 +53,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = @commentable.comments.find(params[:id])
+  end
+
+  def update
+    @comment = @commentable.comments.find(params[:id])
+    if @comment.update_attributes(comment_params)
+      redirect_to @comment.commentable, notice: "Comment was updated."
+    else
+      render :edit
+    end
+  end
+
   # The destroy action removes the post permanently from the database
   def destroy
     if @post.destroy

@@ -5,15 +5,16 @@
 	 	<div class="text-center">
 		  <% if current_user.id == comment.user_id %>
 			  <%= link_to "Delete", comment, class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
+        <%= link_to 'Edit', [:edit, comment.commentable, @comment], class: "btn btn-success" %>
 			<% end %>
 		</div>
 
-  <%= form_for [comment, Comment.new] do |f| %>
+    <%= form_for [comment, Comment.new] do |f| %>
       <%= f.text_area :body, placeholder: "Add a Reply" %><br/>
       <%= f.submit "Reply"  %>
-      <% end %>
+    <% end %>
 
-  <ul>
+  <ul>@
       <%= render partial: 'comments/comment', collection: comment.comments %>
   </ul>
 

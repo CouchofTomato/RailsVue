@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
         redirect_back(fallback_location: root_path, notice: "Your comment wasn't posted!") 
       end
     end
-
+    
     # The destroy action removes the comments permanently from the database
     def destroy
       if @comment.destroy
