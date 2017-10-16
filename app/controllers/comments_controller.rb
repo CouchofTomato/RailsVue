@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
 	before_action :find_commentable
-  before_action :set_comment, only: [:destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
     def new
@@ -17,9 +16,26 @@ class CommentsController < ApplicationController
         redirect_back(fallback_location: root_path, notice: "Your comment wasn't posted!") 
       end
     end
+
+    # Edit action retrives the post and renders the edit page
+    def edit
+      @comment = @commentable.comments.find(params[:id])
+    end
+
+    def update
+      @comment = @commentable.comments.find(params[:id])
+
+      if @comment.update_attributes(comment_params)
+        redirect_to @comment.commentable, notice: "Comment was updated."
+      else
+        render :edit
+      end
+    end
     
     # The destroy action removes the comments permanently from the database
     def destroy
+      @comment = Comment.find(params[:id])
+
       if @comment.destroy
         flash[:notice] = "Successfully deleted comment!"
         redirect_to root_path
@@ -37,10 +53,6 @@ class CommentsController < ApplicationController
     def find_commentable
       @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
       @commentable = Post.find_by_id(params[:post_id]) if params[:post_id]
-    end
-
-    def set_comment
-      @comment = Comment.find(params[:id])
     end
 
   #   def find_commentable
