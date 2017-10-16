@@ -28,13 +28,21 @@ class PostsController < ApplicationController
 
   # Edit action retrives the post and renders the edit page
   def edit
+    @comment = @commentable.comments.find(params[:id])
   end
 
   # Update action updates the post with the new information
   def update
+      @comment = @commentable.comments.find(params[:id])
+
     if @post.update_attributes(post_params)
       flash[:notice] = "Successfully updated post!"
       redirect_to post_path(@post)
+    if @comment.update_attributes(comment_params)
+      redirect_to @comment.commentable, notice: "Comment was updated."
+    else
+      render :edit
+    end
     else
       flash[:alert] = "Error updating post!"
       render :edit
@@ -50,19 +58,6 @@ class PostsController < ApplicationController
         flash[:notice] = "Error: Not a valid link."
         redirect_to(:action => 'index')
       return
-    end
-  end
-
-  def edit
-    @comment = @commentable.comments.find(params[:id])
-  end
-
-  def update
-    @comment = @commentable.comments.find(params[:id])
-    if @comment.update_attributes(comment_params)
-      redirect_to @comment.commentable, notice: "Comment was updated."
-    else
-      render :edit
     end
   end
 
@@ -85,6 +80,7 @@ class PostsController < ApplicationController
   def find_post
     @post = Post.find(params[:id])
   end
+
 end
 
 
