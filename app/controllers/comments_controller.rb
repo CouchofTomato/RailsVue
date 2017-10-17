@@ -19,14 +19,15 @@ class CommentsController < ApplicationController
 
   # Edit action retrives the post and renders the edit page
   def edit
-    @comment = @commentable.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
-    @comment = @commentable.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
 
     if @comment.update_attributes(comment_params)
-      redirect_to @comment.commentable, notice: "Comment was updated."
+      post = find_post(@comment)
+      redirect_to post, notice: "Comment was updated."
     else
       render :edit
     end
@@ -58,6 +59,13 @@ class CommentsController < ApplicationController
       end
     end
     nil
+  end
+
+  def find_post comment
+    until comment.commentable.class == Post
+      comment = comment.commentable
+    end
+    comment.commentable
   end
 
 end
